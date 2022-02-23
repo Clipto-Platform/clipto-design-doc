@@ -111,7 +111,8 @@ The validity of the data in the database can also be verified by using the Graph
 The above method can solve API security as well as improve user interaction. If implemented, the user can move on from the website instead of waiting for the transaction on the chain to be completed. The frontend would still be waiting for the confirmation but the backend won't need to rely on the website for data sync and updates.
 
 
-
+The above workflow can be visualized as below diagram
+![sequence](https://github.com/AP-Atul/clipto-design-doc/raw/main/assets/clipto_proposal.png)
 
 
 
