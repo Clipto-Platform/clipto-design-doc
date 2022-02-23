@@ -112,6 +112,7 @@ The above method can solve API security as well as improve user interaction. If 
 
 
 The above workflow can be visualized as below diagram
+
 ![sequence](https://github.com/AP-Atul/clipto-design-doc/raw/main/assets/clipto_proposal.png)
 
 
