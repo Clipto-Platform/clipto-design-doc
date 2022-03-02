@@ -10,15 +10,6 @@ Clipto may or may not charge some fee for the platform.
 - User: A new user to clipto who has not yet registered as a creator
 - Creator: A user who has registered as a creator
 
-
-## Design Goals
-### Constraint
-users should have seamless experience when doing the transaction. Even if user closes the tab after doing the transaction the response must be recorded in the database.
-
-### Reason for constraint
-There is considerable delay in getting response from the contract when user does a transaction. In that time gap, if user closes the tab or refreshes the page,  tansaction would be completed i.e This transaction would be on chain but the transaction details won't get stored in the database. Since the data did not get stored in the database creator won't get the request from the user even though the transaction was completed. Explained in Drawback section.
-
-
 ## Technical Design
 ### Wallet Connect
   - Website needs to have a `Connect Wallet` button.
@@ -71,6 +62,14 @@ There is considerable delay in getting response from the contract when user does
   - The requester should be able to view expired requests.
   - The refund button would be available, on clicking it the contract should initiate a refund.
   - After completion of the refund the status of the request will be updated in the database via API.
+
+
+## Design Goals
+### Constraint
+users should have seamless experience when doing the transaction. Even if user closes the tab after doing the transaction the response must be recorded in the database.
+
+### Reason for constraint
+There is considerable delay in getting response from the contract when user does a transaction. In that time gap, if user closes the tab or refreshes the page,  tansaction would be completed i.e This transaction would be on chain but the transaction details won't get stored in the database. Since the data did not get stored in the database creator won't get the request from the user even though the transaction was completed. Explained in Drawback section.
 
 
 ## Outcome
