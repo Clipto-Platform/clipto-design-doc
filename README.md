@@ -68,10 +68,7 @@ The creator can see received orders which they can fulfil. The website will prov
 
 ## Drawbacks
 ### DB and Contract Out of Sync
-The contract interaction creates a transaction on the blockchain, the transaction usually takes a while to process and mine. The API has to wait until the transaction is completed which also requires the user to be on the website and not close the tab. The transaction is not yet recorded in the database which is the primary source of all the data to look for.
-
-
-If the user leaves the site before completion of the transaction then only the contract will have the request data and the database fails to track that which results in out-of-sync data.
+The contract interaction creates a transaction on the blockchain, the transaction usually takes a while to process and mine. The API which updates the record in the database for certain entity need to wait until the transaction is completed which also requires the user to be on the website and not close the tab. If the user closes the window/tab before the transaction completes the data is not recorded in the database. So in this case, the contract is up to date but the database is not which results in out-of-sync data.
 
 ### API authentication
 The APIs even with Recaptcha and SIWE auth can still be abused to some extent, which would create unnecessary records in the database. For example, a malicious user can create multiple requests which could have identical data and can abuse the on-chain verification mechanism or if successful to bypass can create records in the database.
@@ -85,11 +82,12 @@ Instead of relying on the website to confirm the transaction and then inform the
 - Request Creation: When the user submits the request, the request gets stored without on-chain verification as an `unverified request`. When the user completes the transaction, the backend/server will be able to catch the `NewRequest` event and update the request which can be made `verified`. 
 
 
-- Request Completion / Refund: The transaction initiated for these operations would not require any direct API calls with the backend, the backend just have to listen to their respective events and update the database thereon.
+- Request Completion / Refund: The transaction initiated for these operations would not require any direct API calls with the backend, the backend just has to listen to their respective events and update the database thereon.
 
-The validity of the data in the database can also be verified by using the Graph which can be called via a Schedule which then can sync the data from Graph and the database (extreme condition only)
+The validity of the data in the database can also be verified by using the Graph which can be called via a Scheduler which then can sync the data from Graph and the database (extreme condition only)
 
 The above method can solve API security as well as improve user interaction. If implemented, the user can move on from the website instead of waiting for the transaction on the chain to be completed. The frontend would still be waiting for the confirmation but the backend won't need to rely on the website for data sync and updates.
+
 
 
 The above workflow can be visualized as below diagram
