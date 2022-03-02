@@ -10,25 +10,13 @@ Clipto may or may not charge some fee for the platform.
 - User: A new user to clipto who has not yet registered as a creator
 - Creator: A user who has registered as a creator
 
+
 ## Design Goals
-### Wallet Connect
-Any user coming to the platform should be able to connect their crypto wallet whether that be Metamask or Mobile Wallet and interact with the platform.
+### Constraint
+users should have seamless experience when doing the transaction. Even if user closes the tab after doing the transaction the response must be recorded in the database.
 
-### Onboarding Process
-Once the user has connected their wallet, they can become a creator.
-To onboard a creator, the creator has to tweet which contains their public crypto wallet address, which then can be verified by the platform, and then they can fill up a form containing details of the minimum fee they want to charge and minimum days for delivery. The same Twitter profile/account cannot be used to create a new creator profile on the platform.
-
-### Request Creation
-Any user who has their wallet connected on the platform can request any creator of their choice. They can browse the creator's list on the platform and select the one for which they want to request. To make a request the user will need to input the amount (greater than the min set by the creator) deadline days, and include instructions for completing a request. 
-
-### Request Completion
-The creator can see all the requests they have received, these requests can be completed by uploading a video along with title and description. The platform should create an NFT for this and make the requester owner of the NFT. After completion of the Request, the creator should be paid the amount.
-
-### NFT View
-The requester should be able to browse completed requests and see the NFT video completed by the creator, the user should be able to view it on various sites including OpenSea, and Polygon scan.
-
-### Refund
-The requester can request a refund for an expired request, this will happen when the creator fails to upload a video and completion of the request.
+### Reason for constraint
+There is considerable delay in getting response from the contract when user does a transaction. In that time gap, if user closes the tab or refreshes the page,  tansaction would be completed i.e This transaction would be on chain but the transaction details won't get stored in the database. Since the data did not get stored in the database creator won't get the request from the user even though the transaction was completed. Explained in Drawback section.
 
 
 ## Technical Design
@@ -83,6 +71,27 @@ The requester can request a refund for an expired request, this will happen when
   - The requester should be able to view expired requests.
   - The refund button would be available, on clicking it the contract should initiate a refund.
   - After completion of the refund the status of the request will be updated in the database via API.
+
+
+## Outcome
+### Wallet Connect
+Any user coming to the platform should be able to connect their crypto wallet whether that be Metamask or Mobile Wallet and interact with the platform.
+
+### Onboarding Process
+Once the user has connected their wallet, they can become a creator.
+To onboard a creator, the creator has to tweet which contains their public crypto wallet address, which then can be verified by the platform, and then they can fill up a form containing details of the minimum fee they want to charge and minimum days for delivery. The same Twitter profile/account cannot be used to create a new creator profile on the platform.
+
+### Request Creation
+Any user who has their wallet connected on the platform can request any creator of their choice. They can browse the creator's list on the platform and select the one for which they want to request. To make a request the user will need to input the amount (greater than the min set by the creator) deadline days, and include instructions for completing a request. 
+
+### Request Completion
+The creator can see all the requests they have received, these requests can be completed by uploading a video along with title and description. The platform should create an NFT for this and make the requester owner of the NFT. After completion of the Request, the creator should be paid the amount.
+
+### NFT View
+The requester should be able to browse completed requests and see the NFT video completed by the creator, the user should be able to view it on various sites including OpenSea, and Polygon scan.
+
+### Refund
+The requester can request a refund for an expired request, this will happen when the creator fails to upload a video and completion of the request.
 
 
 ## Drawbacks
