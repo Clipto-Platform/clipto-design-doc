@@ -47,7 +47,7 @@ User ---- tx ---> Proxy ----------> Implementation_v0
                       ------------> Implementation_v2
 ```
 
-2. Login-Data Pattern
+2. Logic-Data Pattern
 
 This pattern is suitable if you think you won’t need new state variables in future upgrades.
 
