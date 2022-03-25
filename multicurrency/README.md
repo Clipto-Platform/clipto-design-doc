@@ -39,7 +39,7 @@ const transaction = await cliptoExchangeContract.newRequest(ERC20_CONTRACT_ADDRE
 The contract call when approved, the clipto contract will check for allowance of the amount specified.
 And call the `transfer` of the ERC20 and transfer the allowed amount to the Clipto Exchange contracts.
 
-```s
+```solidity
 ERC20 token = ERC20(ERC20_CONTRACT_ADDRESS);
 uint256 allowance = token.allowance(msg.sender, address(this));
 
@@ -58,7 +58,7 @@ address in the `Request` struct and use in `deliverRequest` and `refundRequest` 
 exactly the type of crypto which was initially used
 
 
-```s
+```solidity
 struct Request {
     # Address of the requester
     address requester;
@@ -77,7 +77,7 @@ struct Request {
 
 For completing a request the flow of contract functions would be
 
-```s
+```solidity
 # getting request from state
 Request storage request = requests[msg.sender][index];
 
