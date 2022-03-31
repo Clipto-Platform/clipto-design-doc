@@ -41,15 +41,17 @@ onlyOwner                           // allows only owner to call
 2. Storage structure of request
 ```solidity
 requests {
-    # mapping
+    // mapping
     address,    // creator's address
     Request[],  // array of all request struct
+}
 
-    {
-        address,   // requester's address
-        amount,    // amount of the request
-        fulfilled, // status of the request
-    }
+// Request struct
+struct Request
+{
+    address,   // requester's address
+    amount,    // amount of the request
+    fulfilled, // status of the request
 }
 ```
 
