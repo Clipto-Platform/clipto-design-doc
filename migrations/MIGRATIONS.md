@@ -4,7 +4,7 @@
 creators {
     // mapping
     address,  // creator's address
-    address,  // clipto nft token address
+    CliptoToken,  // clipto nft token address
 }
 
 Event CreatorRegistered {
@@ -33,7 +33,7 @@ onlyOwner                           // allows only owner to call
        creators[creators_address[i]] = token;
 
        // could create an event for each creator
-       emit CreatorRegistered(creators_address[i], token, json_data[i]);
+       emit CreatorRegistered(creators_address[i], token[i], json_data[i]);
    }
 
    // or use a common new event to emit all and index in subgraph 
