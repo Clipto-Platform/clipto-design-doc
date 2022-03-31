@@ -1,21 +1,21 @@
 ## Migrations of current exising v2 contract
 1. The current storage structure for creator
-```c
+```solidity
 creators {
-    # mapping
-    address,  creator's address
-    address,  clipto nft token address
+    // mapping
+    address,  // creator's address
+    address,  // clipto nft token address
 }
 
 Event CreatorRegistered {
-    address,   creator's address
-    address,   clipto nft token address
-    data,      extra json for other details
+    address,   // creator's address
+    address,   // clipto nft token address
+    data,      // extra json for other details
 }
 ```
 
 Migration function can be created with params as
-```shell
+```solidity
 function migrateCreator(
     address [] creators_address,    // all addresses of creator
     address [] tokens_address,      // all nft tokens of creator 
@@ -39,22 +39,22 @@ onlyOwner                           // allows only owner to call
 
 
 2. Storage structure of request
-```c
+```solidity
 requests {
     # mapping
-    address,    creator's address
-    Request[],  array of all request struct
+    address,    // creator's address
+    Request[],  // array of all request struct
 
     {
-        address,   requester's address
-        amount,    amount of the request
-        fulfilled, status of the request
+        address,   // requester's address
+        amount,    // amount of the request
+        fulfilled, // status of the request
     }
 }
 ```
 
 Migration function can be created with params as
-```shell
+```solidity
 function migrateRequest(
     address [] creators_address,     // all addresses of creator
     address [] requester_address,    // all addresses of the requester
