@@ -21,15 +21,19 @@ function migrateCreator(
     address [] tokens_address,      // all nft tokens of creator 
     string  [] json_data            // all extra json of creator
 )
+public
 onlyOwner                           // allows only owner to call     
 {
    // loop through the array
    for(uint i = 0; i < creators_address.length; i++) {
-       // update mappings
-       creators[creators_address[i]] = CliptoToken(tokens_address[i]);
+       // create nft contract instance
+       CliptoToken token = CliptoToken(tokens_address[i]);
+       
+       // update creator mappings
+       creators[creators_address[i]] = token;
 
        // could create an event for each creator
-       emit CreatorRegistered(creators_address[i], tokens_address[i], json_data[i]);
+       emit CreatorRegistered(creators_address[i], token, json_data[i]);
    }
 
    // or use a common new event to emit all and index in subgraph 
@@ -64,6 +68,7 @@ function migrateRequest(
     bool    [] fulfilleds,           // all statuses of the requests
     string  [] json_data,            // extra json data of the requests
 )
+public
 onlyOwner       // only owner has the access to call this function
 {
     for(uint i = 0; i < creators_address, i++) {
