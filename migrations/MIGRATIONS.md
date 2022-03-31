@@ -17,9 +17,9 @@ Event CreatorRegistered {
 Migration function can be created with params as
 ```solidity
 function migrateCreator(
-    address [] creators_address,    // all addresses of creator
-    address [] tokens_address,      // all nft tokens of creator 
-    string  [] json_data            // all extra json of creator
+    address [] calldata creators_address,    // all addresses of creator
+    address [] calldata tokens_address,      // all nft tokens of creator 
+    string  [] calldata json_data            // all extra json of creator
 )
 public
 onlyOwner                           // allows only owner to call     
@@ -62,11 +62,11 @@ struct Request
 Migration function can be created with params as
 ```solidity
 function migrateRequest(
-    address [] creators_address,     // all addresses of creator
-    address [] requester_address,    // all addresses of the requester
-    uint256 [] amounts,              // all amounts of the requests
-    bool    [] fulfilleds,           // all statuses of the requests
-    string  [] json_data,            // extra json data of the requests
+    address [] calldata creators_address,     // all addresses of creator
+    address [] calldata requester_address,    // all addresses of the requester
+    uint256 [] calldata amounts,              // all amounts of the requests
+    bool    [] calldata fulfilleds,           // all statuses of the requests
+    string  [] calldata json_data,            // extra json data of the requests
 )
 public
 onlyOwner       // only owner has the access to call this function
