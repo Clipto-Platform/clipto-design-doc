@@ -8,4 +8,4 @@ Contract related docs are [here](https://github.com/Clipto-Platform/clipto/tree/
 ### Architecture
 
 
-![architecture](https://github.com/Clipto-Platform/clipto-design-doc/raw/main/assets/clipto_proposal.png)
+![architecture](https://github.com/Clipto-Platform/clipto-design-doc/raw/main/assets/clipto.arch.png)
