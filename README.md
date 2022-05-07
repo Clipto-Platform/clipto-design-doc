@@ -4,3 +4,8 @@ Clipto is a platform for users who want to request video content from their favo
 Clipto is a web3 version of [Cameo](https://cameo.com)
 
 Contract related docs are [here](https://github.com/Clipto-Platform/clipto/tree/dev/docs)
+
+### Architecture
+
+
+![architecture](https://github.com/Clipto-Platform/clipto-design-doc/raw/main/assets/clipto_proposal.png)
