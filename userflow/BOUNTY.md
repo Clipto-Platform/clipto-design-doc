@@ -17,3 +17,13 @@ Sol B: Trying to only invite the creator
     Step 3: Creator accepts the invite and onboards
     Step 4: Notify requester to make a booking
     Step 5: Usual userflow
+
+### Suggestion
+
+1. To add this feature, we should not consider changing the contracts, it should not
+be required.
+
+### Issues
+
+1. While creating new request the contract checks if the creator exists
+2. Request requires payment  of value greater than 0
