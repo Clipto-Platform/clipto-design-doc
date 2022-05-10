@@ -1,29 +1,55 @@
-## Bounty 
+## Bounty Feature
 
-Sol A: Trying to get creator's address
+### Outcome
 
-    Step 1: User submit a link 
-    https://opensea.io/assets/matic/0xf74c1b1e1b59fc574c36117e54bcd1ab6d5e19b7/0
-    Step 2: Fetch the owner of token
-    Step 3: Check if existing creator
-    Step 4: Find available ENS
-    Step 5: Confirm from requester
-    Step 6: Proceed with transaction
+The requester should be able to book a request to a creator who wants to join the platform and
+who is not a part of the platform yet. The creator should be able to onboard on the platform
+with the invite the requester will send.
 
-Sol B: Trying to only invite the creator
+### Approach
 
-    Step 1: User creates an invite
-    Step 2: Invite is sent
-    Step 3: Creator accepts the invite and onboards
-    Step 4: Notify requester to make a booking
-    Step 5: Usual userflow
+---
 
-### Suggestion
+#### Sol A: Get the creator's address from the requester
 
-1. To add this feature, we should not consider changing the contracts, it should not
-be required.
+The requester visits the Clipto's bounty page. In the bounty form, they enter the "to be a creator"'s
+`Ethereum wallet address` or a `link` which points to an NFT preferably on OpenSea, of which the
+owner he wants to request. The `link` will involve the NFT contract address and the token id which
+will help to get the owner of the NFT. After having the creator's address and the requester's address,
+the requester can proceed with normal request creation. And finally, the requester tweets out the
+link of the invitation and will tag the creator. The creator joins the website with the link, this link
+doesn't have to be unique since we know exactly which address to point the request to. Once the creator
+signs up, they should see the order on the Orders page.
 
-### Issues
+We could also fetch `ENS` if the address is associated with the one which will help the requester to
+validate.
 
-1. While creating new request the contract checks if the creator exists
-2. Request requires payment  of value greater than 0
+Advantages
+
+- Extra work to only fetch the owner from the nft
+- Requires minor changes to the contracts
+- No centralized party is involved
+
+Disadvantages
+
+- Requires creator's address beforehand to make a request
+
+---
+
+#### Sol B: Storing the bounty on the contracts
+
+The requester visits the Clipto's bounty page. In the bounty form, the requester enters the "to be a creator"'s
+Twitter handle and completes the form. The requested amount is paid on the contract, the request will be then
+stored on the contract with a unique identifier as the Twitter handle. Finally, the requester will tweet out
+the onboarding link with the creator's Twitter handle tagged. The creator can then follow the onboarding process
+using the link. The bounty request will be visible on the Orders page which will be fetched based on the
+creator's Twitter handle. The further request flow will remain the same.
+
+Advantages
+
+- Doesn't require the creator's address to request creation
+
+Disadvantages
+
+- Need to make multiple changes to contracts, and add new events, states, and functions.
+- Need centralized service to verify if the creator is using the same Twitter handle as the bounty request.
